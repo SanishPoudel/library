@@ -3,3 +3,9 @@ fieldset {
   flex-direction: column;
   border: none;
 }
+
+.fieldset_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
