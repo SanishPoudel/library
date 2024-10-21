@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const new_btn = document.querySelector(".new_btn");
 const dialog = document.querySelector("dialog");
+const close = document.querySelector(".close");
 
 // an array to hold the book objects
 const myLibrary = [];
@@ -19,3 +20,7 @@ new_btn.addEventListener("click", () => {
   // needs to load the form for input
   dialog.showModal();
 });
+
+close.addEventListener("click", () => {
+  dialog.close();
+})
