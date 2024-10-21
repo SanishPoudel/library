@@ -11,19 +11,20 @@
     <button type="button" class="new_btn">New Book</button>
     
     <dialog>
-      <form>
+      <form action="post">
         <fieldset>
           <label for="name_of_book">Name of the book:</label>
-          <input id="name_of_book" name="name_of_book" type="text">
+          <input id="name_of_book" name="name_of_book" type="text" required>
         </fieldset>
 
         <fieldset>
           <label for="author">Author of the book:</label>
-          <input id="author" name="author" type="text">
+          <input id="author" name="author" type="text" required>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="fieldset_button">
           <input type="submit">
+          <button class="close">close</button>
         </fieldset>
       </form>
     </dialog>
