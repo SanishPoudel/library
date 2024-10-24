@@ -33,16 +33,29 @@ addBookToLibrary(book_1);
 console.log(myLibrary);
 
 myLibrary.forEach(book => {
+  //child elements
   let writer = document.createElement("div");
   let book_name = document.createElement("div");
+  let remove_button = document.createElement("button");
   
+  // child elements' text
   writer.textContent = "Author: " + book.author;
-  book_name.textContent = "Title: " + book.name ;
+  book_name.textContent = "Title: " + book.name;
+  remove_button.textContent = "Remove";
 
+  // making newbook which will act as a parent
   let newbook = document.createElement("div");
 
+  //appending child elements into newbook
   newbook.appendChild(book_name);
   newbook.appendChild(writer);
+  newbook.appendChild(remove_button);
+
+  // adding the remove button
+  remove_button.addEventListener("click", () => {
+    newbook.remove();
+  })
   
+  // adding newbook to the container to be displayed
   container.appendChild(newbook); 
 });
