@@ -28,7 +28,9 @@ close.addEventListener("click", () => {
 })
 
 book_1 = new Book("a", "b");
+book_2 = new Book("c", "d");
 addBookToLibrary(book_1);
+addBookToLibrary(book_2);
 
 console.log(myLibrary);
 
@@ -51,10 +53,16 @@ myLibrary.forEach(book => {
   newbook.appendChild(writer);
   newbook.appendChild(remove_button);
 
-  // adding the remove button
+  // adding the remove button event listener
   remove_button.addEventListener("click", () => {
     newbook.remove();
   })
+
+  newbook.style.border = "1px solid black";
+  newbook.style.padding = "10px";
+  newbook.style.display = "flex";
+  newbook.style.flexDirection = "column";
+  newbook.style.gap = "5px";
   
   // adding newbook to the container to be displayed
   container.appendChild(newbook); 
