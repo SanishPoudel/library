@@ -34,7 +34,7 @@ addBookToLibrary(book_2);
 
 console.log(myLibrary);
 
-myLibrary.forEach(book => {
+myLibrary.forEach((book, index) => {
   //child elements
   let writer = document.createElement("div");
   let book_name = document.createElement("div");
@@ -47,6 +47,7 @@ myLibrary.forEach(book => {
 
   // making newbook which will act as a parent
   let newbook = document.createElement("div");
+  newbook.setAttribute("data-index", index);
 
   //appending child elements into newbook
   newbook.appendChild(book_name);
@@ -55,6 +56,7 @@ myLibrary.forEach(book => {
 
   // adding the remove button event listener
   remove_button.addEventListener("click", () => {
+    myLibrary.splice(newbook.data-index, 1);
     newbook.remove();
   })
 
