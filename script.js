@@ -15,11 +15,13 @@ function Book(name, author) {
   this.author = author;
 }
 
-
-
 function addBookToLibrary(book) {
   // function to take user input and add them to the myLibrary array.
   myLibrary.push(book);
+  while (container.firstChild)
+    {
+        container.removeChild(container.lastChild);
+    }
   myLibrary.forEach((book, index) => {
     //child elements
     let writer = document.createElement("div");
@@ -77,8 +79,6 @@ new_btn.addEventListener("click", () => {
 close.addEventListener("click", () => {
   dialog.close();
 })
-
-
 
 submit.addEventListener("click", input)
 
