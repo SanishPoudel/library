@@ -1,3 +1,4 @@
+// assigning constants to use
 const container = document.querySelector(".container");
 const new_btn = document.querySelector(".new_btn");
 const dialog = document.querySelector("dialog");
@@ -6,22 +7,27 @@ const submit = document.querySelector(".submit");
 const book_title = document.querySelector("#name_of_book");
 const author_name = document.querySelector("#author");
 const form = document.querySelector("form");
+const reading_status = document.querySelectorAll('input[name="reading_status"]');
 
 // an array to hold the book objects
 const myLibrary = [];
 
-function Book(name, author) { 
+function Book(name, author, reading_state) { 
+  // the constructor
   this.name = name;
   this.author = author;
+  this.reading_state = reading_state;
 }
 
 function addBookToLibrary(book) {
   // function to take user input and add them to the myLibrary array.
   myLibrary.push(book);
-  while (container.firstChild)
-    {
-        container.removeChild(container.lastChild);
-    }
+  while (container.firstChild) // to make sure that items don't get repeated
+  {
+    container.removeChild(container.lastChild);
+  }
+
+
   myLibrary.forEach((book, index) => {
     //child elements
     let writer = document.createElement("div");
@@ -33,7 +39,14 @@ function addBookToLibrary(book) {
     writer.textContent = "Author: " + book.author;
     book_name.textContent = "Title: " + book.name;
     remove_button.textContent = "Remove";
-    read_button.textContent = "Read";
+
+    // reading status
+    if (book.reading_state === "yes") {
+      read_button.textContent = "Read";
+    } else {
+      read_button.textContent = "Not Read";
+    }
+    
   
     // making newbook which will act as a parent
     let newbook = document.createElement("div");
@@ -60,6 +73,7 @@ function addBookToLibrary(book) {
       }
     })
   
+    // adding basic styles
     newbook.style.border = "1px solid black";
     newbook.style.padding = "10px";
     newbook.style.display = "flex";
@@ -77,19 +91,47 @@ new_btn.addEventListener("click", () => {
 });
 
 close.addEventListener("click", () => {
+  // closing the form
   dialog.close();
 })
 
-submit.addEventListener("click", input)
+// for submit button
+submit.addEventListener("click", input);
 
+// defining the input function used in the submit button
 function input(event) {
   event.preventDefault();
-  if (book_title.value != "" && author_name.value != "") {
-    let item = new Book(book_title.value, author_name.value);
-    addBookToLibrary(item);
-    form.reset()
-    dialog.close();
-  } else {
+
+  // checking if the user has provided input or not
+  if (book_title.value != "" && author_name.value != "") 
+  {
+    let read_unread;
+    let isChecked = false;
+
+    // checking if they have selected a button or not
+    reading_status.forEach(btn => 
+    {
+      if (btn.checked) 
+      {
+        isChecked = true;
+        read_unread = btn.value;
+      }
+    });
+    if (!isChecked) 
+    {
+      alert("Please select a reading status");
+    } 
+    else 
+    {
+      // gets here if the user gave a valid input
+      let item = new Book(book_title.value, author_name.value, read_unread);
+      addBookToLibrary(item);
+      form.reset()
+      dialog.close();
+    }
+  } 
+  else 
+  {
     alert("Please fill out the forms correctly"); 
   }
 }
