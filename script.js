@@ -12,12 +12,14 @@ const reading_status = document.querySelectorAll('input[name="reading_status"]')
 // an array to hold the book objects
 const myLibrary = [];
 
-function Book(name, author, reading_state) { 
-  // the constructor
-  this.name = name;
-  this.author = author;
-  this.reading_state = reading_state;
-}
+class Book{
+  constructor(name, author, reading_state) { 
+    // the constructor
+    this.name = name;
+    this.author = author;
+    this.reading_state = reading_state;
+  }
+} 
 
 function addBookToLibrary(book) {
   // function to take user input and add them to the myLibrary array.
