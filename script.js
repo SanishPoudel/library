@@ -134,6 +134,18 @@ function input(event) {
   } 
   else 
   {
-    alert("Please fill out the forms correctly"); 
+    if (book_title.value === "") {
+      book_title.setCustomValidity("Please enter the title of the book.");
+      form.reportValidity();
+    } else {
+      book_title.setCustomValidity("");
+    }
+
+    if (author_name.value === "") {
+      author_name.setCustomValidity("Please enter the name of the author.");
+      form.reportValidity();
+    } else {
+      author_name.setCustomValidity("");
+    }
   }
 }
